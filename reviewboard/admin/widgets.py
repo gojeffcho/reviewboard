@@ -23,6 +23,7 @@ from reviewboard.reviews.models import (ReviewRequest, Group,
                                         Comment, Review, Screenshot,
                                         ReviewRequestDraft)
 from reviewboard.scmtools.models import Repository
+from reviewboard.admin.security_checks import SecurityCheckRunner
 
 
 DAYS_TOTAL = 30  # Set the number of days to display in date browsing widgets
@@ -359,7 +360,6 @@ class RecentActionsWidget(Widget):
     template = 'admin/widgets/w-recent-actions.html'
     has_data = False
 
-
 def dynamic_activity_data(request):
     """Large database acitivity widget helper.
 
@@ -506,6 +506,40 @@ class ActivityGraphWidget(Widget):
     ]
     has_data = False
 
+class SecurityCenterWidget(Widget):
+    """Security Center widget.
+
+    Displays a list of security alerts to the user.
+    """
+
+    widget_id = 'security-center-widget'
+    title = _('Security Center')
+    size = Widget.SMALL
+    template = 'admin/widgets/w-security-center.html'
+
+    def generate_data(self, request):
+        """Generate data for the widget."""
+        securityCheck = SecurityCheckRunner()
+        securityResults = [item['error_msg'] for item in securityCheck.run() if item['result'] == False]
+
+        results = {
+            'count': len(securityResults),
+            'error_msgs': securityResults
+        }
+
+        # import pdb; pdb.set_trace()
+        return results
+
+    actions = [
+        {
+            'url': '/admin/security',
+            'label': _('More'),
+        },
+        {
+            'label': _('Reload'),
+            'id': 'reload-security-widget',
+        },
+    ]
 
 def init_widgets():
     """Initialize the widgets subsystem.
@@ -571,3 +605,4 @@ register_admin_widget(ReviewGroupsWidget)
 register_admin_widget(ServerCacheWidget)
 register_admin_widget(NewsWidget)
 register_admin_widget(DatabaseStatsWidget)
+register_admin_widget(SecurityCenterWidget)
