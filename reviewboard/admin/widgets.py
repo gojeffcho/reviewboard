@@ -515,6 +515,7 @@ class SecurityCenterWidget(Widget):
     widget_id = 'security-center-widget'
     title = _('Security Center')
     size = Widget.SMALL
+    cache_data = False
     template = 'admin/widgets/w-security-center.html'
 
     def generate_data(self, request):
