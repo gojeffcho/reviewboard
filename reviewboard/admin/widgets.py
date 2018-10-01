@@ -518,19 +518,6 @@ class SecurityCenterWidget(Widget):
     cache_data = False
     template = 'admin/widgets/w-security-center.html'
 
-    def generate_data(self, request):
-        """Generate data for the widget."""
-        securityCheck = SecurityCheckRunner()
-        securityResults = [item['error_msg'] for item in securityCheck.run() if item['result'] == False]
-
-        results = {
-            'count': len(securityResults),
-            'error_msgs': securityResults
-        }
-
-        # import pdb; pdb.set_trace()
-        return results
-
     actions = [
         {
             'url': '/admin/security',

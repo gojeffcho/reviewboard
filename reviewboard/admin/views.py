@@ -130,6 +130,19 @@ def security(request, template_name="admin/security.html"):
     }))
 
 
+@staff_member_required
+def security_feed(request, template_name="admin/security_feed.html"):
+    """Run security checks and pass error messages to template."""
+    runner = SecurityCheckRunner()
+    results = [item['error_msg'] for item in runner.run() if item['result'] == False]
+
+    return render_to_response(template_name, RequestContext(request, {
+        'error_msgs': results,
+        'count': len(results),
+        'title': _("Security Checklist"),
+    }))
+
+
 @superuser_required
 def site_settings(request, form_class, template_name='admin/settings.html'):
     """Render the general site settings page."""

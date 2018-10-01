@@ -1,19 +1,23 @@
-{% load i18n %}
-<table class="widget-rows" style="width: 100%;">
+{% load i18n staticfiles %}
 
- <tr>
-  {%  if widget.data.count == 1 %}
-  <th>{{widget.data.count}} security issue was found:</th>
+<div class="security-center-content-widget">
+ <span class="fa fa-spinner fa-pulse"></span>
+ {% trans "Loading..." %}
+</div>
+<script type="text/javascript">
+$(document).ready(function () {
+    // RSS Feed Controls
+    $('a.reload-security-widget').click(function(evt) {
+        $('.security-center-content-widget').load('feed/security/?reload=1');
+            evt.preventDefault();
+        });
 
-  {%  else %}
-  <th>{{widget.data.count}} security issues were found:</th>
-  {%  endif %}
- </tr>
+    $('.security-center-content-widget').load('feed/security/', function() {
+        var $extras = $('#admin-extras');
 
-{%  for securityIncident in widget.data.error_msgs  %}
- <tr>
-  <th>{{securityIncident}}</th>
- </tr>
-{%  endfor  %}
-
-</table>
+        if ($.data($extras[0], 'masonry')) {
+            $extras.masonry('reload');
+        }
+    });
+});
+</script>

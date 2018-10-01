@@ -1,0 +1,24 @@
+{% load feedtags i18n %}
+
+{% if error %}
+{%  blocktrans with error.reason as error %}<p class="feed-error">Unable to load feed: {{error}}</p>{% endblocktrans %}
+{% else %}
+<table class="widget-rows" style="width: 100%;">
+
+ <tr>
+  {%  if count == 1 %}
+  <th>{{error_msgs.count}} security issue was found:</th>
+
+  {%  else %}
+  <th>{{count}} security issues were found:</th>
+  {%  endif %}
+ </tr>
+
+{%  for securityIncident in error_msgs  %}
+ <tr>
+  <th>{{securityIncident}}</th>
+ </tr>
+{%  endfor  %}
+
+</table>
+{% endif %}
