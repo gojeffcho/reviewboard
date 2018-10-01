@@ -7,7 +7,7 @@
 <script type="text/javascript">
 $(document).ready(function () {
     // RSS Feed Controls
-    $('a.reload-security-widget').click(function(evt) {
+    $('#reload-security-widget').click(function(evt) {
         $('.security-center-content-widget').load('feed/security/?reload=1');
             evt.preventDefault();
         });
