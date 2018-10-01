@@ -23,7 +23,6 @@ from reviewboard.reviews.models import (ReviewRequest, Group,
                                         Comment, Review, Screenshot,
                                         ReviewRequestDraft)
 from reviewboard.scmtools.models import Repository
-from reviewboard.admin.security_checks import SecurityCheckRunner
 
 
 DAYS_TOTAL = 30  # Set the number of days to display in date browsing widgets
@@ -505,6 +504,7 @@ class ActivityGraphWidget(Widget):
         },
     ]
     has_data = False
+
 
 class SecurityCenterWidget(Widget):
     """Security Center widget.

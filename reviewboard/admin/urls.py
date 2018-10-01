@@ -51,8 +51,9 @@ urlpatterns = [
             'template_name': 'admin/feed.html',
             'url': NEWS_FEED,
         }),
-        
-    url(r'^feed/security/$', views.security_feed, name='admin-widget-security'),
+
+    url(r'^feed/security/$', views.security_feed,
+        name='admin-widget-security'),
 
     url(r'^feed/news/rss/$',
         RedirectView.as_view(url=NEWS_FEED, permanent=True)),
