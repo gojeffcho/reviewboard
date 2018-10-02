@@ -1,4 +1,4 @@
-{% load i18n staticfiles %}
+{% load i18n %}
 
 <div class="security-center-content-widget">
  <span class="fa fa-spinner fa-pulse"></span>
@@ -6,11 +6,12 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function () {
-    // RSS Feed Controls
+    // Load security center error messages from custom security view.
     $('#reload-security-widget').click(function(evt) {
+        evt.preventDefault();
+        evt.stopPropagation();
         $('.security-center-content-widget').load('feed/security/?reload=1');
-            evt.preventDefault();
-        });
+    });
 
     $('.security-center-content-widget').load('feed/security/', function() {
         var $extras = $('#admin-extras');

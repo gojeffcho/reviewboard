@@ -134,12 +134,15 @@ def security(request, template_name="admin/security.html"):
 def security_feed(request, template_name="admin/security_feed.html"):
     """Run security checks and pass error messages to template."""
     runner = SecurityCheckRunner()
-    results = [item['error_msg'] for item in runner.run()
-               if not item['result']]
+    err_msgs = [
+        item['error_msg']
+        for item in runner.run()
+        if not item['result']
+    ]
 
     return render_to_response(template_name, RequestContext(request, {
-        'error_msgs': results,
-        'count': len(results),
+        'error_msgs': err_msgs,
+        'count': len(err_msgs),
         'title': _("Security Checklist"),
     }))
 

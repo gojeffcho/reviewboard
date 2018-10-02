@@ -359,6 +359,7 @@ class RecentActionsWidget(Widget):
     template = 'admin/widgets/w-recent-actions.html'
     has_data = False
 
+
 def dynamic_activity_data(request):
     """Large database acitivity widget helper.
 
@@ -520,12 +521,12 @@ class SecurityCenterWidget(Widget):
 
     actions = [
         {
-            'url': '/admin/security',
             'label': _('More'),
+            'url': '/admin/security',
         },
         {
-            'label': _('Reload'),
             'id': 'reload-security-widget',
+            'label': _('Reload'),
         },
     ]
 
