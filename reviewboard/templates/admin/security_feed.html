@@ -3,22 +3,18 @@
 {% if error %}
 {%  blocktrans with error.reason as error %}<p class="feed-error">Unable to load feed: {{error}}</p>{% endblocktrans %}
 {% else %}
-<table class="widget-rows" style="width: 100%;">
 
- <tr>
-  {%  if count == 1 %}
-  <th>{{error_msgs.count}} security issue was found:</th>
+<div class = "summary">
+{%  if count == 1 %}
+  &nbsp; {{error_msgs.count}} security issue was found: <br />
 
-  {%  else %}
-  <th>{{count}} security issues were found:</th>
-  {%  endif %}
- </tr>
+{%  else %}
+  &nbsp; {{count}} security issues were found: <br />
+{%  endif %}
+</div>
 
 {%  for security_incident in error_msgs  %}
- <tr>
-  <th>{{security_incident}}</th>
- </tr>
+<div class = "entry">&nbsp; &#9656; {{security_incident}} </div>
 {%  endfor  %}
 
-</table>
 {% endif %}

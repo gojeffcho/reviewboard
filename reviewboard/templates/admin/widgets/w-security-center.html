@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<div class="security-center-content-widget">
+<div class="security-center-widget">
  <span class="fa fa-spinner fa-pulse"></span>
  {% trans "Loading..." %}
 </div>
@@ -10,10 +10,10 @@ $(document).ready(function () {
     $('#reload-security-widget').click(function(evt) {
         evt.preventDefault();
         evt.stopPropagation();
-        $('.security-center-content-widget').load('feed/security/?reload=1');
+        $('.security-center-widget').load('feed/security/?reload=1');
     });
 
-    $('.security-center-content-widget').load('feed/security/', function() {
+    $('.security-center-widget').load('feed/security/', function() {
         var $extras = $('#admin-extras');
 
         if ($.data($extras[0], 'masonry')) {
