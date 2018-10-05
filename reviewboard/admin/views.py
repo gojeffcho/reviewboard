@@ -132,7 +132,7 @@ def security(request, template_name="admin/security.html"):
 
 @staff_member_required
 def security_feed(request, template_name="admin/security_feed.html"):
-    """Run security checks and pass error messages to template."""
+    """Run security checks and render the results with the given template."""
     runner = SecurityCheckRunner()
     err_msgs = [
         item['error_msg']
@@ -141,8 +141,8 @@ def security_feed(request, template_name="admin/security_feed.html"):
     ]
 
     return render_to_response(template_name, RequestContext(request, {
-        'error_msgs': err_msgs,
         'count': len(err_msgs),
+        'error_msgs': err_msgs,
         'title': _("Security Checklist"),
     }))
 
