@@ -132,7 +132,20 @@ def security(request, template_name="admin/security.html"):
 
 @staff_member_required
 def security_feed(request, template_name="admin/security_feed.html"):
-    """Run security checks and render the results with the given template."""
+    """Run security checks and render the results with the given template.
+
+    Args:
+        request (django.http.HttpRequest):
+            The HTTP request from the client.
+
+        template_name (unicode):
+            The template to render the results of the security checks.
+
+    Returns:
+        django.http.HttpResponse:
+            The rendered response.
+
+    """
     runner = SecurityCheckRunner()
     err_msgs = [
         item['error_msg']

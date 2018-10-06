@@ -510,7 +510,7 @@ class ActivityGraphWidget(Widget):
 class SecurityCenterWidget(Widget):
     """Security Center widget.
 
-    Displays a list of security alerts to the user.
+    This widget displays a list of security alerts to the user.
     """
 
     widget_id = 'security-center-widget'
