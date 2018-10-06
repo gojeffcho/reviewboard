@@ -143,7 +143,7 @@ def security_feed(request, template_name="admin/security_feed.html"):
 
     Returns:
         django.http.HttpResponse:
-            The rendered response.
+        The rendered response.
 
     """
     runner = SecurityCheckRunner()
