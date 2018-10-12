@@ -2,13 +2,13 @@
 
 <div class="summary">
 {% if count == 1 %}
-{%  blocktrans  %}
-  {{count}} security issue was found:
-{%  endblocktrans  %}
+{% blocktrans %}
+  1 security issue was found:
+{% endblocktrans %}
 {% else %}
-{%  blocktrans with count=count %}
+{% blocktrans with count=count %}
   {{count}} security issues were found:
-{%  endblocktrans  %}
+{% endblocktrans %}
 {% endif %}
 </div>
 
