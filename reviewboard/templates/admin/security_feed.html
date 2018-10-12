@@ -1,17 +1,20 @@
 {% load i18n %}
 
-<div class="summary">
-{% if count == 1 %}
-{% blocktrans %}
-  1 security issue was found:
-{% endblocktrans %}
+<div class="summary{% if count > 0 %} has-errors{% endif %}">
+{% if count == 0 %}
+  {% trans "No security issue was found."%}
 {% else %}
-{% blocktrans with count=count %}
-  {{count}} security issues were found:
-{% endblocktrans %}
-{% endif %}
+  {% if count == 1 %}
+    {% trans "1 security issue was found:" %}
+
+  {% else %}
+    {% blocktrans with count=count %}
+      {{count}} security issues were found:
+    {% endblocktrans %}
+  {% endif %}
 </div>
 
 {% for security_incident in error_msgs %}
 <div class="entry">&#9656; {{security_incident}} </div>
 {% endfor %}
+{% endif %}
